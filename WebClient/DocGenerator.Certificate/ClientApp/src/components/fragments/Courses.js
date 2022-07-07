@@ -18,7 +18,7 @@ export class Courses extends Component {
             this.setState({ isOpenModel: true });        
     }
 
-    render() {
+    render() {       
         const { props } = this,
             { course } = props;
         const { isOpenModel } = this.state
@@ -36,7 +36,7 @@ export class Courses extends Component {
                     <div className="text-center aling-bottom" style={{ paddingBottom: '5px' }} >
                         <button className="btn btn-primary" style={{ width: '80%' }} onClick={this.updateStateModal} >Create certificate</button>
                     </div>
-                {(isOpenModel ? <PopupForms className='PopupForms' closePopup={this.updateStateModal} /> : null)}
+                {(isOpenModel ? <PopupForms className='PopupForms' course={course} closePopup={this.updateStateModal} /> : null)}
                 </div>
         );
     }

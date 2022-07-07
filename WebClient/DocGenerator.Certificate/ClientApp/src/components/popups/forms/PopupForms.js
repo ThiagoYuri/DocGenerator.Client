@@ -3,26 +3,25 @@ import './PopupForms.css'
 
 export class PopupForms extends Component {
 
-    static defaultProps = {
-        course: {},
-        closePopup: () => { },
-        createCertificate: () => {
-
-
-            fetch('certificate', { method: 'POST', headers: { "Content-type": "application/json;charset=UTF-8" } })
-                .then(response => response.json())  // convert to json
-                .then(json => alert(json))    // print console
-                .catch(err => alert('Send erro'));
-
-            alert("teste")
-        }
-    }
-
     constructor(props) {
         super(props);
+        this.createCertificate = this.createCertificate.bind(this)
     }
 
-    
+    createCertificate() {
+        const { course } = this.props;
+        const nameFull = document.getElementById("inputNameFull").value;
+        if (nameFull.length > 5) {
+            fetch('certificate?nameCourse=' + course.NameCourse + '&nameFullUser=' + nameFull, { method: 'POST', headers: { "Content-type": "application/json;charset=UTF-8" } })
+                .then(response => response.json())  // convert to json
+                .then(json => alert(json))    // print console
+                .catch(err => alert('Erro:'+erro));
+        } else {
+            alert("Name is invalid");
+        }
+        
+    }
+
     render() {
         return (
             //Modal
@@ -35,12 +34,12 @@ export class PopupForms extends Component {
                         <div className="modal-body">
                             <div className="input-group">
                                 <span className="input-group-text">Full Name</span>
-                                <input type="text" className="form-control" placeholder="Example: Thiago Yuri Oliveira Monteiro" aria-label="Username" />
+                                <input type="text" id="inputNameFull" className="form-control" placeholder="Example: Thiago Yuri Oliveira Monteiro" aria-label="Username" />
                             </div>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" onClick={this.props.closePopup}>Close</button>
-                            <button type="button" className="btn btn-primary" onClick={this.props.createCertificate}>Save changes</button>
+                            <button type="button" className="btn btn-primary" onClick={this.createCertificate}>Save changes</button>
                         </div>
                     </div>
                 </div>

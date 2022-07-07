@@ -16,12 +16,14 @@ namespace DocGenerator.Certificate.Controllers
     public class CertificateController : ControllerBase
     {
         [HttpPost]
-        public string Post()
+        public string Post(string nameCourse, string nameFullUser)
         {
             RequestDocGenerator requestDocGenerator = new RequestDocGenerator();
             HttpResponseMessage response =  requestDocGenerator.postDocument(
                 new List<DocumentInfo>(){ 
-                new DocumentInfo() { keyInFile="NameFull",value="Teste"}
+                new DocumentInfo() { keyInFile="NAMEFULL",value=nameFullUser},
+                new DocumentInfo() { keyInFile="COURSENAME",value=nameCourse },
+                new DocumentInfo() { keyInFile="DATEEMISS", value=DateTime.Now.ToString("dd/mm/yyyy") }
                 },
                 Resource.Certificate
             );
