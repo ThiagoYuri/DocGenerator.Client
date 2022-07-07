@@ -31,6 +31,7 @@ namespace DocGenerator.ClientDLL
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/user"));
             client.DefaultRequestHeaders.Add("User-Agent", "DocGenerator Client");
+            
         }
 
 
@@ -54,15 +55,24 @@ namespace DocGenerator.ClientDLL
        
         public void CreateRequestBody(byte[] file)
         {
-            // Get The ByteArrayContent,Reading Bytes From The Give File Path.
-            // Adding It To The MultipartFormDataContent Once File Is Read.
-            ByteArrayContent fileContent = new ByteArrayContent(file);
+            try
+            {
+                // Get The ByteArrayContent,Reading Bytes From The Give File Path.
+                // Adding It To The MultipartFormDataContent Once File Is Read.
+                ByteArrayContent fileContent = new ByteArrayContent(file);
 
-            // Add Content Type For MediaTypeHeaderValue.
-            fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                // Add Content Type For MediaTypeHeaderValue.
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
-            // Add The File Under ''input'
-            formDataContent.Add(fileContent, "file", "file.docx");
+                // Add The File Under ''input'
+                formDataContent.Add(fileContent, "file", "file.docx");
+
+                
+            }catch(Exception e)
+            {
+                Console.WriteLine($"Erro Client: {e.Message}");
+            }
+           
         }
 
     }
