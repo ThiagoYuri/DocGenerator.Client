@@ -23,7 +23,7 @@ namespace DocGenerator.Certificate.Controllers
                 new List<DocumentInfo>(){ 
                 new DocumentInfo() { keyInFile="NAMEFULL",value=nameFullUser},
                 new DocumentInfo() { keyInFile="COURSENAME",value=nameCourse },
-                new DocumentInfo() { keyInFile="DATEEMISS", value=DateTime.Now.ToString("dd/mm/yyyy") }
+                new DocumentInfo() { keyInFile="DATEEMISS", value=DateTime.Now.ToString("dd/MM/yyyy") }
                 },
                 Resource.Certificate
             );
