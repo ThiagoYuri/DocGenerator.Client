@@ -8,14 +8,19 @@ export class PopupForms extends Component {
         this.createCertificate = this.createCertificate.bind(this)
     }
 
+    seachDocument(id) {
+        window.open('http://localhost:5000/DocumentWord/GetFile?id=' + id);
+    }
+
+
     createCertificate() {
         const { course } = this.props;
         const nameFull = document.getElementById("inputNameFull").value;
         if (nameFull.length > 5) {
             fetch('certificate?nameCourse=' + course.NameCourse + '&nameFullUser=' + nameFull, { method: 'POST', headers: { "Content-type": "application/json;charset=UTF-8" } })
                 .then(response => response.json())  // convert to json
-                .then(json => alert(json))    // print console
-                .catch(err => alert('Erro:'+erro));
+                .then(json => this.seachDocument(json))    // print console
+                .catch(err => alert('Erro:'+err));
         } else {
             alert("Name is invalid");
         }
