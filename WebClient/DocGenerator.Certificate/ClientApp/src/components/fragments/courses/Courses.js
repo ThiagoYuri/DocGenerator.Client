@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Courses.css'
-import { PopupForms } from '../popups/forms/PopupForms'
+import { PopupForms } from '../../popups/forms/PopupForms'
 
 export class Courses extends Component {
 

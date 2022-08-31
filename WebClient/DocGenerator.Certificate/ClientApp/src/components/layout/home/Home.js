@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import './Home.css'
-import { Courses } from '../fragments/Courses';
-import ListCourses from '../../jsonCourses.json'
+import { Courses } from '../../fragments/courses/Courses';
+import ListCourses from '../../../jsonCourses.json'
 
 
 export class Home extends Component {
